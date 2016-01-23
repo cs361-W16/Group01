@@ -28,7 +28,7 @@ import static org.junit.Assert.assertThat;
 public class ModelTest {
 
     @Test
-    public void testDeck(){
+    public void testDeckCreate(){
        /*     System.out.println("yay");
         int[] deck = new int[52];
         for(int i = 0; i<52; i++) {
@@ -37,4 +37,5 @@ public class ModelTest {
 
         }*/
     }
+    
 }
