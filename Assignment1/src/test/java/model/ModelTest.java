@@ -21,6 +21,8 @@ import ninja.NinjaDocTester;
 import org.doctester.testbrowser.Request;
 import org.doctester.testbrowser.Response;
 import org.junit.Test;
+import model.Card;
+import model.GameState;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertThat;
@@ -37,4 +39,40 @@ public class ModelTest {
 
         }*/
     }
+
+    @Test
+    public void sameValues(){
+
+        Card card1 = new Card(2,'C');
+        Card card2 = new Card(3,'C');
+        Card card3 = new Card(4,'C');
+        Card card4 = new Card(5,'C');
+
+        GameState game = new GameState();
+        game.columns.get(1).add(card1);
+        game.columns.get(2).add(card2);
+        game.columns.get(3).add(card3);
+        game.columns.get(0).add(card4);
+
+        assert(false == game.compareCard(1,2)); //false if 2 is greater than 1
+        assert(true == game.compareCard(0,3));
+    }
+
+    @Test
+    public void sameSuits(){
+        Card card1 = new Card(4,'C');
+        Card card2 = new Card(7,'C');
+        Card card3 = new Card(4,'H');
+        Card card4 = new Card(5,'C');
+
+        GameState game = new GameState();
+        game.columns.get(1).add(card1);
+        game.columns.get(2).add(card2);
+        game.columns.get(3).add(card3);
+        game.columns.get(0).add(card4);
+
+        assert(true == game.compareSuit(1, 2)); //return true if two suits are the same
+        assert(false == game.compareSuit(0, 3));
+    }
+
 }
