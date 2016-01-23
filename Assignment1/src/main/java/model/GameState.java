@@ -14,11 +14,8 @@ public class GameState implements Serializable {
     public Deck deck;
 
     public boolean compareCard(int colA, int colB){
-        java.util.List <Card> tarColA = columns.get(colA); //get the card on top
-        java.util.List <Card> tarColB = columns.get(colB);
-
-        Card card1 = tarColA.get(tarColA.size()-1); //get the size of column
-        Card card2 = tarColB.get(tarColB.size()-1);
+        Card card1 = getTop(colA); //get the size of column
+        Card card2 = getTop(colB);
 
         if(card1.getVal() > card2.getVal()){
             return true;
@@ -29,11 +26,8 @@ public class GameState implements Serializable {
     //Compare two suits
     public boolean compareSuit(int colA, int colB) {
         //boolean result = false;
-        java.util.List <Card> tarColA = columns.get(colA); //get the card on top
-        java.util.List <Card> tarColB = columns.get(colB);
-
-        Card card1 = tarColA.get(tarColA.size()-1); //get the size of column
-        Card card2 = tarColB.get(tarColB.size()-1);
+        Card card1 = getTop(colA); //get the size of column
+        Card card2 = getTop(colB);
 
         if (card1.getSuit() == card2.getSuit()) {
             //result = compareCard(colA, colB);
@@ -42,6 +36,43 @@ public class GameState implements Serializable {
         else {
 
             return false;
+        }
+    }
+
+    public boolean add(int col, Card card){
+        if(card == null || col<0 || col>3){
+            return false;
+        }
+        columns.get(col).add(card);
+        return true;
+    }
+
+    public boolean remove(int col){
+        if(col<0 || col>3 || columns.get(col).isEmpty()){
+            return false;
+        }
+        columns.get(col).remove(columns.get(col).size()-1);
+        return true;
+    }
+
+    public Card getTop(int col){
+        if(col<0 || col>3 || columns.get(col).isEmpty()){
+            return null;
+        }
+        return columns.get(col).get(columns.get(col).size()-1);
+    }
+
+    public void discard (int col){
+        if(columns.get(col)== null || columns.get(col).isEmpty()){
+            return;
+        }
+        int pos=0;
+        while(pos<4){
+            if( !columns.get(pos).isEmpty() && compareSuit(col,pos) && compareCard(pos,col)){
+                remove(col);
+                return;
+            }
+            pos++;
         }
     }
 

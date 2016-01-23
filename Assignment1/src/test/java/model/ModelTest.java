@@ -30,18 +30,97 @@ import static org.junit.Assert.assertThat;
 public class ModelTest {
 
     @Test
-    public void testDeckCreate(){
-       /*     System.out.println("yay");
-        int[] deck = new int[52];
-        for(int i = 0; i<52; i++) {
-            deck[i] = i;
-            System.out.print(deck[i]);
+    public void AddTest(){
 
-        }*/
+        GameState gs = new GameState();
+        Card card1= new Card(2,'D');
+        Card card2= new Card(6,'C');
+        Card card3= new Card(12,'H');
+        Card card4= new Card(10,'S');
+
+        gs.add(0,card1);
+        gs.add(0,card2);
+        gs.add(1,card3);
+        gs.add(3,card4);
+
+        assert(gs.columns.get(0).size()==2);
+        assert(gs.columns.get(0).get(0)==card1);
+        assert(gs.columns.get(0).get(1)==card2);
+        assert(gs.columns.get(1).size()==1);
+        assert(gs.columns.get(1).get(0)==card3);
+        assert(gs.columns.get(2).size()==0);
+        assert(gs.columns.get(3).size()==1);
+        assert(gs.columns.get(3).get(0)==card4);
+
     }
-<<<<<<< HEAD
-    
-=======
+
+    @Test
+    public void RemoveTest(){
+        GameState gs = new GameState();
+        Card card1= new Card(2,'D');
+        Card card2= new Card(6,'C');
+        Card card3= new Card(12,'H');
+        Card card4= new Card(10,'S');
+
+        gs.add(0,card1);
+        gs.add(0,card2);
+        gs.add(1,card3);
+        gs.add(3,card4);
+
+        gs.remove(0);
+        assert(gs.columns.get(0).size()==1);
+        assert(gs.columns.get(0).get(0)==card1);
+
+        gs.remove(1);
+        assert(gs.columns.get(1).size()==0);
+
+        gs.remove(2);
+
+    }
+
+    @Test
+    public void GetTopTest(){
+        GameState gs = new GameState();
+        Card card1= new Card(2,'D');
+        Card card2= new Card(6,'C');
+        Card card3= new Card(12,'H');
+        Card card4= new Card(10,'S');
+
+        gs.add(0,card1);
+        gs.add(0,card2);
+        gs.add(1,card3);
+        gs.add(3,card4);
+
+        assert(gs.getTop(0)==card2);
+        assert(gs.getTop(1)==card3);
+        assert(gs.getTop(2)==null);
+        assert(gs.getTop(3)==card4);
+
+    }
+
+    @Test
+    public void discardTest(){
+        GameState gs = new GameState();
+        Card card1= new Card(2,'D');
+        Card card2= new Card(6,'C');
+        Card card3= new Card(12,'H');
+        Card card4= new Card(10,'S');
+        Card card5= new Card(10,'C');
+
+        gs.add(0,card1);
+        gs.add(0,card2);
+        gs.add(1,card3);
+        gs.add(3,card4);
+
+        gs.discard(0);
+        assert(gs.columns.get(0).size()==2);
+        gs.add(3,card5);
+        gs.discard(0);
+        assert(gs.columns.get(0).size()==1);
+
+    }
+
+
 
     @Test
     public void sameValues(){
@@ -78,5 +157,4 @@ public class ModelTest {
         assert(false == game.compareSuit(0, 3));
     }
 
->>>>>>> refs/remotes/cs361-W16/master
 }
