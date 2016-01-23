@@ -75,4 +75,53 @@ public class ModelTest {
         assert(false == game.compareSuit(0, 3));
     }
 
+    @Test
+    public void testCard1(){
+        Deck deck = new Deck();
+        deck.buildDeck();
+        assert(deck != null);
+        Card card = new Card();
+        card.setVal(3);
+        card.setSuit('S');
+        assert(card.getVal()>0);
+        assert(card.getSuit() == 'S');
+    }
+
+    @Test
+    public void testDrawCard(){
+        Deck deck = new Deck();
+        deck.buildDeck();
+        Card card = deck.getNewCard();
+        assert(card != null);
+    }
+
+    @Test
+    public void testDrawWholeDeck(){
+        Deck deck = new Deck();
+        deck.buildDeck();
+        Card card = new Card();
+        for(int i=0; i<=51; i++){
+            card = deck.getNewCard();
+            //assert(card.getUsed());
+        }
+    }
+    @Test
+    public void testDeckSize(){
+        Deck deck = new Deck();
+        deck.buildDeck();
+        int v = deck.getDeckSize();
+        assert(v>0);
+    }
+
+    @Test
+    public void testGetNewCard(){
+        Deck deck = new Deck();
+        deck.buildDeck();
+        Card card = new Card();
+        card = deck.getACard(4);
+        assert(card.getVal() > 0);
+    }
+
+
+
 }
