@@ -18,6 +18,8 @@ package controllers;
 
 import ninja.Result;
 import ninja.Results;
+import ninja.Context;
+import model.Deck;
 
 import com.google.inject.Singleton;
 
@@ -31,6 +33,12 @@ public class ApplicationController {
 
     public Result acesUp() {
         return Results.html().template("views/AcesUp/AcesUp.flt.html");
+    }
+
+    public Result draw4cards(Context context, Deck deck) {
+        //Holder for when I implement draw 4 cards
+
+        return Results.html();
     }
 
 }
