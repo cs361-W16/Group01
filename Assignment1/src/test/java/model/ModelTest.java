@@ -204,6 +204,18 @@ public class ModelTest {
         assert(card.getVal() > 0);
     }
 
-
+    @Test
+    public void MoveTest(){
+        int input = 2;
+        GameState gs = new GameState();
+        assert(input < 3 || input > 0);
+        int counter = 0;
+        for(int i = 0; i <= 3; i++){
+            if(gs.columns.get(i).isEmpty())
+                counter ++;
+            assert(counter <= 3);
+            //assert will fail before the cards are dealt
+        }
+    }
 
 }

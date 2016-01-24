@@ -88,5 +88,14 @@ public class GameState implements Serializable {
         }
 
     }
+    public void MoveToEmpty(){
+        int input = 2;
+        columns = new ArrayList<List<Card>>();
+        for(int i = 0; i <= 3; i++) {
+            if (columns.get(i).isEmpty())
+                columns.get(i).add(columns.get(input).get(columns.get(input).size()-1));
+            columns.remove(i);
+        }
+    }
 
 }
