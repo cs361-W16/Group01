@@ -93,6 +93,8 @@
 
 <BR>Move from column <input type="text" id="from_col"  /> to <input type="text" id="to_col"  /> <button id="moveButton">Move</button>
 
+<p id="errorCode"></p>
+
 <script>
 
 var game;
@@ -118,8 +120,9 @@ $( '.columnOfCards .cardLocation' ).html("");
         $( '#c3 .l'+key ).html(val.value + val.suit);
     });
 
-
-
+ document.getElementById("errorCode").innerHTML = game.errorCode ;
+ document.getElementById("errorCode").style.color="red";
+ document.getElementById("errorCode").style.fontSize="25px";
 }
 
 $.getJSON("http://localhost:8080/game", function( data ) {
